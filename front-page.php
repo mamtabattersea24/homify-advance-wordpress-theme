@@ -1,4 +1,5 @@
 <?php
+// phpinfo();
 
 /**
  * The front page template file.
@@ -35,39 +36,43 @@ if (is_active_sidebar('homify-front-page-sidebar')) {
       'orderby' => 'date'
     );
     $query = new WP_Query($sec_4_args);
-   
-    echo $query->query_vars['category_name'];
-
+    // echo "<pre>";   
+    // var_dump( $query);
     if ($query->have_posts()):
       while ($query->have_posts()):
         $query->the_post();
         global $post;
 
-        $cat = get_the_category($post->ID);
-        $catName = $cat[0]->cat_name;
-        $catID = get_cat_ID($catName);
+        // $cat = get_the_category($post->ID);
+        // $catName = $cat[0]->cat_name;
+        // $catID = get_cat_ID($catName);
+
+        $catName =  $query->query_vars['category_name'];
+        $catID =  $query->query_vars['cat'];
         $catSlug = get_category_link($catID);
 
-    ?>
+    ?>  
 
         <div class="col-md-4 col">
           <div class="gd-midcat-card">
             <div class="img-placeholder">
-              <?php
-              if (has_post_thumbnail()) {
+              <a href="<?php the_permalink() ?>">
+                <?php
+                if (has_post_thumbnail()) {
                   the_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
-              }
-              ?>
+                }
+                ?>
+              </a>
             </div>
             <div class="gd-card-content">
               <a href="<?php echo $catSlug; ?>" class="gd-category-btn">
                 <?php echo $catName; ?>
               </a>
               <a href="<?php the_permalink() ?>" class="gd-title">
-                <?php echo wp_trim_words(get_the_title(), 10) ?>
+                <?php echo wp_trim_words(the_title(), 10) ?>
               </a>
               <div class="gd-timeline">
-                <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>" class="gd-author">
+                <a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta('ID'))) ?>" class="gd-author">
                   <?php the_author() ?>
                 </a>
                 <span>2 min read</span>
@@ -107,9 +112,8 @@ if (is_active_sidebar('homify-front-page-sidebar')) {
           $query->the_post();
           global $post;
 
-          $cat = get_the_category($post->ID);
-          $catName = $cat[0]->cat_name;
-          $catID = get_cat_ID($catName);
+          $catName =  $query->query_vars['category_name'];
+          $catID =  $query->query_vars['cat'];
           $catSlug = get_category_link($catID);
 
           if ($query->current_post === 0) {
@@ -125,14 +129,14 @@ if (is_active_sidebar('homify-front-page-sidebar')) {
                   </a>
                   <div class="gd-timeline">
                     <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>" class="gd-author">
-                      <?php echo get_the_author() ?>
+                      <?php the_author() ?>
                     </a>
                   </div>
                 </div>
                 <div class="img-placeholder">
                   <?php
                   if (has_post_thumbnail()) {
-                   echo has_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
+                    the_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
                   } ?>
                 </div>
               </div>
@@ -146,7 +150,7 @@ if (is_active_sidebar('homify-front-page-sidebar')) {
                   <div class="img-placeholder">
                     <?php
                     if (has_post_thumbnail()) {
-                     echo  has_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
+                      the_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
                     } ?>
                   </div>
                   <div class="gd-card-content">

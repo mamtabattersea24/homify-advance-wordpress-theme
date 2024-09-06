@@ -40,18 +40,19 @@ get_header(); ?>
     $authors = $authors_query->get_results();
     // echo "<pre>";
     // var_dump($authors);
-    foreach ($authors as $auth): ?>
+    foreach ($authors as $auth): ?> 
+    
       <div class="col-lg-4 col-md-6">
         <div class="gd-auth-card grid">
-          <a href="#" class="auth-img">
+          <a href="<?php echo esc_url(get_author_posts_url($auth->ID)) ?>" class="auth-img">
             <?php
-            echo get_avatar($auth->Id, 96, '', $auth->display_name, array('class' => 'img-fluid'));
+            echo get_avatar($auth->ID, 96, '', $auth->display_name, array('class' => 'img-fluid'));
 
             ?>
           </a>
 
           <div class="gd-card-content">
-            <a href="<?php echo get_author_posts_url(get_the_author_meta($auth->ID)) ?>" class="gd-title"><?php echo $auth->display_name ?></a>
+            <a href="<?php echo esc_url(get_author_posts_url($auth->ID)) ?>" class="gd-title"><?php echo $auth->display_name ?></a>
             <div class="gd-social-links">
               <ul>
                 <li>
@@ -110,7 +111,7 @@ get_header(); ?>
                 </li>
               </ul>
             </div>
-            <a href="#" class="gd-btn">Read More</a>
+            <a href="<?php echo esc_url(get_author_posts_url($auth->ID)) ?>" class="gd-btn">Read More</a>
           </div>
         </div>
       </div>

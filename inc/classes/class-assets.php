@@ -29,10 +29,10 @@ class Assests
   public function register_styles()
   {
     $version = wp_get_theme()->get('version');
-
     // Enqueue styles
     wp_enqueue_style('layout-style', HOMIFY_DIR_URI . "/assets/css/layout.css", array(), $version, 'all');
     wp_enqueue_style('custom-style', HOMIFY_DIR_URI . "/assets/css/style.css", array(), $version, 'all');
+
     // Add preload for fonts
     $preload_fonts = [
       'assets/fonts/poppins/poppins-v20-latin-regular.woff2' => 'font/woff2',

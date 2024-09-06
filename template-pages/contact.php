@@ -186,7 +186,7 @@ get_header(); ?>
       </div>
     </div>
     <div class="col-lg-8 col-md-6">
-      <form action="#" class="row row-gap">
+      <form method="post" class="row row-gap">
         <div class="h4">Contact Us</div>
         <div class="col-lg-6">
           <div class="input-group">

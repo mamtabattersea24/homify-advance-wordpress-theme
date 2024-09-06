@@ -1828,14 +1828,14 @@ footer hr {
     align-items: center;
     justify-content: center;
   }
-
   .lower-part .menu {
     gap: 10px !important;
   }
-
   .border-bottom {
     padding: 15px 0;
   }
-
+  .border-bottom {
+    padding: 15px 0;
+  }
 
 }

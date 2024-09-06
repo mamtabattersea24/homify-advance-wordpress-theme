@@ -44,7 +44,7 @@ get_header(); ?>
           <div class="img-placeholder">
             <?php
             if (has_post_thumbnail()) {
-              echo has_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
+              the_post_thumbnail('post-thumbnail', ['class' => 'img-fluid']);
             }
             ?>
           </div>
